@@ -1,7 +1,6 @@
 package codes.biscuit.skyblockaddons.core;
 
 import codes.biscuit.skyblockaddons.SkyblockAddons;
-import codes.biscuit.skyblockaddons.utils.ColorCode;
 import com.google.gson.JsonObject;
 import com.ibm.icu.text.ArabicShaping;
 import com.ibm.icu.text.ArabicShapingException;
@@ -18,7 +17,6 @@ import java.util.regex.Pattern;
 public enum Message {
     LANGUAGE(MessageObject.ROOT, "language"),
 
-    SETTING_MAGMA_BOSS_WARNING(MessageObject.SETTING, "magmaBossWarning"),
     SETTING_ITEM_DROP_CONFIRMATION(MessageObject.SETTING, "itemDropConfirmation"),
     SETTING_WARNING_DURATION(MessageObject.SETTING, "warningDuration"),
     SETTING_HIDE_SKELETON_HAT_BONES(MessageObject.SETTING, "hideSkeletonHatBones"),
@@ -26,7 +24,6 @@ public enum Message {
     SETTING_HIDE_FOOD_AND_ARMOR(MessageObject.SETTING, "hideFoodAndArmor"),
     SETTING_FULL_INVENTORY_WARNING(MessageObject.SETTING, "fullInventoryWarning"),
     SETTING_REPEATING(MessageObject.SETTING, "repeating"),
-    SETTING_MAGMA_BOSS_TIMER(MessageObject.SETTING, "magmaBossTimer"),
     SETTING_DISABLE_EMBER_ROD_ABILITY(MessageObject.SETTING, "disableEmberRodAbility"),
     SETTING_EDIT_LOCATIONS(MessageObject.SETTING, "editLocations"),
     SETTING_GUI_SCALE(MessageObject.SETTING, "guiScale"),
@@ -109,7 +106,6 @@ public enum Message {
     SETTING_SHOW_AVERAGE_ZEALOTS_PER_EYE(MessageObject.SETTING, "showZealotsPerEye"),
     SETTING_TURN_BOW_GREEN_WHEN_USING_TOXIC_ARROW_POISON(MessageObject.SETTING, "turnBowGreenWhenUsingToxicArrowPoison"),
     SETTING_BIRCH_PARK_RAINMAKER_TIMER(MessageObject.SETTING, "birchParkRainmakerTimer"),
-    SETTING_COMBAT_TIMER_DISPLAY(MessageObject.SETTING, "combatTimerDisplay"),
     SETTING_DISCORD_RP(MessageObject.SETTING, "discordRP"),
     SETTING_ENDSTONE_PROTECTOR_DISPLAY(MessageObject.SETTING, "endstoneProtectorDisplay"),
     SETTING_FANCY_WARP_MENU(MessageObject.SETTING, "fancyWarpMenu"),
@@ -168,16 +164,20 @@ public enum Message {
     SETTING_WARN_WHEN_FETCHUR_CHANGES(MessageObject.SETTING, "warnWhenFetchurChanges"),
     SETTING_STOP_RAT_SOUNDS(MessageObject.SETTING, "stopRatSounds"),
     SETTING_STOP_ONLY_RAT_SQUEAK(MessageObject.SETTING, "onlyStopRatSqueak"),
-    BACKPACK_STYLE_REGULAR(MessageObject.BACKPACK_STYLE, "regular"),
-    BACKPACK_STYLE_COMPACT(MessageObject.BACKPACK_STYLE, "compact"),
     SETTING_DISABLE_SPIRIT_SCEPTRE_MESSAGES(MessageObject.SETTING, "disableSpiritSceptreMessages"),
     SETTING_OUTBID_ALERT_SOUND(MessageObject.SETTING, "outbidAlertSound"),
     SETTING_BAL_BOSS_WARNING(MessageObject.SETTING, "balBossWarning"),
-    SETTING_BROOD_MOTHER_WARNING(MessageObject.SETTING,"broodMotherWarning"),
+    SETTING_BROOD_MOTHER_WARNING(MessageObject.SETTING, "broodMotherWarning"),
+    SETTING_GUI_TEXT_COMMAS(MessageObject.SETTING, "guiTextCommas"),
+    SETTING_CRIMSON_STACKS(MessageObject.SETTING, "crimsonStacks"),
+    SETTING_HIDE_TRUE_DEFENSE(MessageObject.SETTING, "hideTrueDefense"),
+
+    BACKPACK_STYLE_REGULAR(MessageObject.BACKPACK_STYLE, "regular"),
+    BACKPACK_STYLE_COMPACT(MessageObject.BACKPACK_STYLE, "compact"),
+
     MESSAGE_DROP_CONFIRMATION(MessageObject.MESSAGES, "dropConfirmation"),
-    MESSAGE_MAGMA_BOSS_WARNING(MessageObject.MESSAGES, "magmaBossWarning"),
     MESSAGE_BAL_BOSS_WARNING(MessageObject.MESSAGES, "balBossWarning"),
-    MESSAGE_BROOD_MOTHER_WARNING(MessageObject.MESSAGES,"broodMotherWarning"),
+    MESSAGE_BROOD_MOTHER_WARNING(MessageObject.MESSAGES, "broodMotherWarning"),
     MESSAGE_FULL_INVENTORY(MessageObject.MESSAGES, "fullInventory"),
     MESSAGE_LABYMOD(MessageObject.MESSAGES, "labymod"),
     MESSAGE_MINION_CANNOT_REACH(MessageObject.MESSAGES, "minionCannotReach"),
@@ -190,7 +190,6 @@ public enum Message {
     MESSAGE_CLICK_ONE_MORE_TIME(MessageObject.MESSAGES, "clickOneMoreTime"),
     MESSAGE_CANCELLED_CANE_BREAK(MessageObject.MESSAGES, "cancelledCaneBreak"),
     MESSAGE_FEATURE_DISABLED(MessageObject.MESSAGES, "featureDisabled"),
-    MESSAGE_ANVIL_USES(MessageObject.MESSAGES, "anvilUses"),
     MESSAGE_CANCELLED_NON_ORES_BREAK(MessageObject.MESSAGES, "cancelledDeepCaverns"),
     MESSAGE_SPECIAL_ZEALOT_FOUND(MessageObject.MESSAGES, "specialZealotFound"),
     MESSAGE_BLOCK_INCOMPLETE_PATTERNS(MessageObject.MESSAGES, "blockIncompletePatterns"),
@@ -335,7 +334,7 @@ public enum Message {
             if (text != null) {
                 if (this == Message.SETTING_BACKPACK_STYLE) {
                     text = text.replace("%style%", main.getConfigValues().getBackpackStyle().getMessage());
-                } else if(this == Message.SETTING_POWER_ORB_DISPLAY_STYLE) {
+                } else if (this == Message.SETTING_POWER_ORB_DISPLAY_STYLE) {
                     text = text.replace("%style%", main.getConfigValues().getPowerOrbDisplayStyle().getMessage());
                 } else if (this == Message.SETTING_GUI_SCALE) {
                     text = text.replace("%scale%", variables[0]);
@@ -345,8 +344,6 @@ public enum Message {
                     text = text.replace("%type%", variables[0]);
                 } else if (this == Message.MESSAGE_CLICK_MORE_TIMES) {
                     text = text.replace("%times%", variables[0]);
-                } else if (this == Message.MESSAGE_ANVIL_USES) {
-                    text = text.replace("%uses%", main.getConfigValues().getRestrictedColor(Feature.SHOW_ITEM_ANVIL_USES) + variables[0] + ColorCode.GRAY);
                 } else if (this == Message.MESSAGE_ONLY_FEW_ARROWS_LEFT) {
                     text = text.replace("%arrows%", variables[0]);
                 } else if (this == Message.MESSAGE_STAGE) {
